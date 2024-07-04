@@ -42,8 +42,6 @@ export const Login = () => {
     }
   };
 
-  // React.useEffect();
-
   if (isAuth) {
     return <Navigate to="/" />;
   }
@@ -70,7 +68,13 @@ export const Login = () => {
           {...register("password", { required: "Enter your password" })}
           fullWidth
         />
-        <Button type="submit" size="large" variant="contained" fullWidth>
+        <Button
+          disabled={!isValid}
+          type="submit"
+          size="large"
+          variant="contained"
+          fullWidth
+        >
           Login
         </Button>
       </form>
