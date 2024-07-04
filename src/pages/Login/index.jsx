@@ -28,9 +28,21 @@ export const Login = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (values) => {
-    dispatch(fetchAuth(values));
+  const onSubmit = async (values) => {
+    const data = await dispatch(fetchAuth(values));
+
+    if (!data.payload) {
+      return alert("Failed to log in");
+    }
+
+    if ("token" in data.payload) {
+      window.localStorage.setItem("token", data.payload.token);
+    } else {
+      alert("Failed to log in");
+    }
   };
+
+  // React.useEffect();
 
   if (isAuth) {
     return <Navigate to="/" />;
