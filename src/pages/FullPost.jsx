@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "../axios";
 import { useParams } from "react-router-dom";
+import Markdown from "react-markdown";
 
 import { Post } from "../components/Post";
 import { Index } from "../components/AddComment";
@@ -34,7 +35,7 @@ export const FullPost = () => {
         id={data._id}
         title={data.title}
         // imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
-        imageUrl={data.imageUrl}
+        imageUrl={`http://localhost:4444${data.imageUrl}`}
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
@@ -42,7 +43,7 @@ export const FullPost = () => {
         tags={data.tags}
         isFullPost
       >
-        <p>{data.text}</p>
+        <Markdown>{data.text}</Markdown>
       </Post>
       <CommentsBlock
         items={[
